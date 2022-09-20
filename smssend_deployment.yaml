@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: smspullpush
+  namespace: d1-pr-vfom-smtp
+spec:
+  selector:
+    matchLabels:
+      app: reciever-sender
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: reciever-sender
+    spec:
+      containers:
+        - name: reciever-sender
+          image: >-
+            prodgitlab.vodafone.om:5050/shafique.kakati1/smspushpull
+          resources:
+            limits:
+              cpu: 100m
+              memory: 200Mi
+            requests:
+              cpu: 100m
+              memory: 200Mi

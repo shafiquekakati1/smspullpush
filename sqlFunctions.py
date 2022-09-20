@@ -1,6 +1,6 @@
 import postgreSQL_vfom
 import logging
-logging.basicConfig(filename='req_res_log.log', filemode='a', format='%(asctime)s => %(name)s - %(levelname)s - %(message)s')
+logging.basicConfig(filename='/tmp/req_res_log.log', filemode='a', format='%(asctime)s => %(name)s - %(levelname)s - %(message)s')
 
 
 

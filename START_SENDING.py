@@ -3,7 +3,7 @@ import sqlFunctions
 import sender
 import pandas as pd
 import logging
-logging.basicConfig(filename='req_res_log.log', filemode='a',
+logging.basicConfig(filename='/tmp/req_res_log.log', filemode='a',
                     format='%(asctime)s => %(name)s - %(levelname)s - %(message)s')
 
 

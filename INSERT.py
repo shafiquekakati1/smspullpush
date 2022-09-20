@@ -2,7 +2,7 @@ import csv
 import uuid
 import sqlFunctions
 import logging
-logging.basicConfig(filename='req_res_log.log', filemode='a',
+logging.basicConfig(filename='/tmp/req_res_log.log', filemode='a',
                     format='%(asctime)s => %(name)s - %(levelname)s - %(message)s')
 
 
