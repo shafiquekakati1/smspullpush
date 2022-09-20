@@ -1,7 +1,7 @@
 pipeline {
     agent any
     stages {
-        stages ('Build Config') {
+        stage ('Build Config') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'OCP_LOGIN', passwordVariable: 'userPassVar', usernameVariable: 'userNameVar')]) {
                     // some block
@@ -12,7 +12,7 @@ pipeline {
                  }
             }
 
-            stages ('Deployment') {
+        stage ('Deployment') {
                         steps {
                             withCredentials([usernamePassword(credentialsId: 'OCP_LOGIN', passwordVariable: 'userPassVar', usernameVariable: 'userNameVar')]) {
                                 // some block
