@@ -3,7 +3,7 @@ import pandas as pd
 from datetime import datetime, timedelta
 import time
 import logging
-logging.basicConfig(filename='req_res_log.log', filemode='a', format='%(asctime)s => %(name)s - %(levelname)s - %(message)s')
+logging.basicConfig(filename='/tmp/req_res_log.log', filemode='a', format='%(asctime)s => %(name)s - %(levelname)s - %(message)s')
 
 #RESPONDED
 def RESPONDED_UPDATE():
