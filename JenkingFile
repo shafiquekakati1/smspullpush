@@ -11,19 +11,18 @@ pipeline {
                     '''
                  }
             }
-
+		}
         stage ('Deployment') {
-                        steps {
-                            withCredentials([usernamePassword(credentialsId: 'OCP_LOGIN', passwordVariable: 'userPassVar', usernameVariable: 'userNameVar')]) {
-                                // some block
-                                sh '''
-                                oc login "https://api.rhocp.prod-cloud1.itcloud.local.vodafone.om:6443" -u "$userNameVar" -p "$userPassVar" --insecure-skip-tls-verify
-                                oc project d1-pr-vfom-smtp
-                                oc apply -f smssend_deployment.yaml
-                                '''
-                                echo "New BuildConfig created"
-                     }
-				}
+				steps {
+					withCredentials([usernamePassword(credentialsId: 'OCP_LOGIN', passwordVariable: 'userPassVar', usernameVariable: 'userNameVar')]) {
+						// some block
+						sh '''
+						oc login "https://api.rhocp.prod-cloud1.itcloud.local.vodafone.om:6443" -u "$userNameVar" -p "$userPassVar" --insecure-skip-tls-verify
+						oc project d1-pr-vfom-smtp
+						oc apply -f smssend_deployment.yaml
+						'''
+						echo "New BuildConfig created"
+                }
 			}
 		}
 	}
