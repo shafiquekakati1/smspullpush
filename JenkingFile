@@ -22,9 +22,9 @@ pipeline {
                                 oc apply -f smssend_deployment.yaml
                                 '''
                                 echo "New BuildConfig created"
-                         }
-            }
-        }
-
-    }
+                     }
+				}
+			}
+		}
+	}
 }
