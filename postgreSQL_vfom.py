@@ -1,15 +1,16 @@
 import psycopg2
 from psycopg2 import Error
 import pandas as pd
+import sqlFunctions
+
+import logging
+logging.basicConfig(filename='/tmp/req_res_log.log', filemode='a',
+                    format='%(asctime)s => %(name)s - %(levelname)s - %(message)s')
 
 username = 'sms_user'
 password = '!Vfoman@009988'
 
-""" hostname = 'localhost'
-port = '5431'
-database = 'bulksmssend'
 
-select(hostname, port, database, "SELECT version();") """
 
 
 def select(hostname, port, database, cmd):
@@ -35,7 +36,8 @@ def select(hostname, port, database, cmd):
         return pd.read_sql_query(cmd, connection)
 
     except (Exception, Error) as error:
-        print("Error while connecting to PostgreSQL", error)
+         logging.error(hostname + ':'+ port )
+         logging.error('postgreSQL_vfom.py - select => ' + str(error))
     finally:
         if (connection):
             cursor.close()
@@ -64,7 +66,8 @@ def insert(hostname, port, database, cmd):
         return record """
 
     except (Exception, psycopg2.Error) as error:
-        print("Error while connecting to PostgreSQL", error)
+        logging.error(hostname + ':'+ port )
+        logging.error('postgreSQL_vfom.py - insert => ' + str(error))
     finally:
         if connection:
             cursor.close()
@@ -92,7 +95,8 @@ def delete(hostname, port, database, cmd):
         print("Result ", cursor.fetchall()) """
 
     except (Exception, psycopg2.Error) as error:
-        print("Error while connecting to PostgreSQL", error)
+        logging.error(hostname + ':'+ port )
+        logging.error('postgreSQL_vfom.py - delete => ' + str(error))
     finally:
         if connection:
             cursor.close()
@@ -120,7 +124,8 @@ def update(hostname, port, database, cmd):
         print("Result ", cursor.fetchall())
         """
     except (Exception, psycopg2.Error) as error:
-        print("Error while connecting to PostgreSQL", error)
+        logging.error(hostname + ':'+ port )
+        logging.error('postgreSQL_vfom.py - update => ' + str(error))
     finally:
         if connection:
             cursor.close()
