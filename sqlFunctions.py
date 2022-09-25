@@ -5,7 +5,7 @@ logging.basicConfig(filename='/tmp/req_res_log.log', filemode='a', format='%(asc
 
 
 
-hostname = 'localhost'
+hostname = '10.14.12.187'
 port = '5432'
 database = 'bulksmssend'
 

@@ -15,8 +15,8 @@ import sqlFunctions
 
 log = logging.getLogger('vreq')
 log.setLevel(logging.INFO)
-logfile = '/tmp/sha_request.log'
-errorfile='/tmp/sha_errors.log'
+logfile = 'sha_request.log'
+errorfile='sha_errors.log'
 hand = logging.handlers.TimedRotatingFileHandler(logfile, when='d', interval=1)
 hand.setFormatter(logging.Formatter('%(levelname)-8s [%(asctime)s] %(message)s'))
 log.addHandler(hand)

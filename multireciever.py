@@ -17,8 +17,8 @@ import threading
 
 log = logging.getLogger('vreq')
 log.setLevel(logging.INFO)
-logfile = '/tmp/sha_request.log'
-errorfile='/tmp/sha_errors.log'
+logfile = 'sha_request.log'
+errorfile='sha_errors.log'
 hand = logging.handlers.TimedRotatingFileHandler(logfile, when='d', interval=1)
 hand.setFormatter(logging.Formatter('%(levelname)-8s [%(asctime)s] %(message)s'))
 log.addHandler(hand)
@@ -65,7 +65,6 @@ def connect(iip,iport):
 
 def start_reciever1():
 	while 1:
-		print('Starting Reciever1')
 		log.info('Starting Reciever1')
 		try:
 			client1 = connect("10.14.12.197","8080")

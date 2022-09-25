@@ -1,0 +1,4 @@
+  File "./multireciever.py", line 40
+    log.info('SMS Recieved: {}':format(outdict))
+                               ^
+SyntaxError: invalid syntax
