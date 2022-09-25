@@ -15,7 +15,7 @@ pipeline {
 		}
         stage ('Deployment') {
 				steps {
-					withCredentials([usernamePassword(credentialsId: 'OCP_LOGIN', passwordVariable: 'userPassVar', usernameVariable: 'userNameVar')]) {
+					withCredentials([usernamePassword(credentialsId: 'OCP_LOGIN1', passwordVariable: 'userPassVar', usernameVariable: 'userNameVar')]) {
 						// some block
 						sh '''
 						oc login "https://api.rhocp.prod-cloud1.itcloud.local.vodafone.om:6443" -u "$userNameVar" -p "$userPassVar" --insecure-skip-tls-verify
