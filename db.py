@@ -7,8 +7,8 @@ from psycopg2 import Error
 
 log = logging.getLogger('vreq')
 log.setLevel(logging.INFO)
-logfile = 'sha_request.log'
-errorfile='sha_errors.log'
+logfile = '/tmp/sha_request.log'
+errorfile='/tmp/sha_errors.log'
 hand = logging.handlers.TimedRotatingFileHandler(logfile, when='d', interval=1)
 hand.setFormatter(logging.Formatter('%(levelname)-8s [%(asctime)s] %(message)s'))
 log.addHandler(hand)

@@ -14,7 +14,7 @@ from pprint import pprint,pformat
 
 log = logging.getLogger('vreq')
 log.setLevel(logging.INFO)
-logfile = 'sha_request.log'
+logfile = '/tmp/sha_request.log'
 hand = logging.handlers.TimedRotatingFileHandler(logfile, when='d', interval=1)
 hand.setFormatter(logging.Formatter('%(levelname)-8s [%(asctime)s] %(message)s'))
 log.addHandler(hand)
