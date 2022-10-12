@@ -11,20 +11,27 @@ import smpplib.consts
 from pprint import pprint,pformat
 import sqlFunctions
 import threading
+import db
 
 
 #logging.basicConfig(level='DEBUG')
 
 log = logging.getLogger('vreq')
 log.setLevel(logging.INFO)
-logfile = '/tmp/sha_request.log'
-errorfile='/tmp/sha_errors.log'
+logfile = 'sha_request.log'
+errorfile='sha_errors.log'
 hand = logging.handlers.TimedRotatingFileHandler(logfile, when='d', interval=1)
 hand.setFormatter(logging.Formatter('%(levelname)-8s [%(asctime)s] %(message)s'))
 log.addHandler(hand)
 
+
 # Handle delivery receipts (and any MO SMS)
 def handle_deliver_sm(pdu):
+	ps_connection=db.connection_check(postgreSQL_pool)
+	if ps_connection == "failure" :
+		#exit()
+		print(ps_connection)
+		#thread.exit()
 	try:
 		values=[]
 		outdict={}
@@ -38,7 +45,8 @@ def handle_deliver_sm(pdu):
 		else:
 			outdict.update({'receipted_message_id':'None','status':'response'})
 		log.info('SMS Recieved: {}'.format(outdict))
-		sqlFunctions.INSERT_TRANSITION(outdict['destination_addr'],outdict['sequence'],outdict['source_addr'],outdict['short_message'],outdict['receipted_message_id'],outdict['status'])
+		sqlFunctions.INSERT_TRANSITION(ps_connection,outdict['destination_addr'],outdict['sequence'],outdict['source_addr'],outdict['short_message'],outdict['receipted_message_id'],outdict['status'])
+		db.release_connection(postgreSQL_pool,ps_connection)
 	except Exception as err:
 		log.error('Data reciving error: {}'.format(err))
 		log.error('Data reciving error: {}'.format(values))
@@ -94,6 +102,7 @@ def start_reciever2():
                         continue
 
 if __name__ == "__main__":
+	postgreSQL_pool = db.connection()
 	threads = list()
 	x = threading.Thread(target=start_reciever1,daemon=True)	
 	threads.append(x)
